@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const InventorySchema = new Schema(
   {
     dealer: { type: Schema.Types.ObjectId, ref: "user", required: true },
-    oemSpecs: { type: Schema.Types.ObjectId, ref: "OEMSpecs", required: true },
+    oemSpecs: { type: Schema.Types.ObjectId, ref: "OEMSpec", required: true },
     title: { type: String, required: true },
     image: { type: String, required: true },
     description: { type: String, required: true },
