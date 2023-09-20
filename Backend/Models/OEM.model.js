@@ -10,7 +10,7 @@ const OEMSchema = new Schema(
     power: { type: String },
     maxSpeed: { type: String },
     provider: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "user",
       required: true,
     },
