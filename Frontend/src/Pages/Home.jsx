@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div className="text-white ">
-      <h1>home</h1>
+      
       <div className="w-1/3 my-5 px-5">
         <form onSubmit={handleSubmit}>
           <FormLabel htmlFor="mainSearch">Search cars here</FormLabel>
@@ -49,7 +49,7 @@ const Home = () => {
           return (
             <div
               key={ele._id}
-              className="flex mb-5 bg-white rounded-xl text-black wrap"
+              className="flex mb-5 bg-white rounded-xl text-black wrap cursor-pointer"
             >
               <div className="w-1/2 p-5 ">
                 <img src={ele.image} className="rounded-md" />

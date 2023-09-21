@@ -1,15 +1,16 @@
-import './App.css'
-import AllRoutes from './Router/AllRoutes'
+import "./App.css";
+import NavBar from "./Components/NavBar";
+import AllRoutes from "./Router/AllRoutes";
 
 function App() {
-
   return (
     <>
-      <div className=''>
-         <AllRoutes/>
+      <div className="">
+        <NavBar />
+        <AllRoutes />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
