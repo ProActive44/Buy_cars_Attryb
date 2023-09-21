@@ -22,6 +22,9 @@ app.use((req, res, next) => {
   // Skip authentication for /user/login and /user/signup routes
   if (req.path === "/user/login" || req.path === "/user/signup") {
     next();
+  } else if (req.method === "GET" && req.baseUrl === "/marketPlace") {
+    // Skip authentication for GET requests on /marketPlace
+    next();
   } else {
     // Require authentication for other routes
     authMiddleware(req, res, next);
@@ -29,6 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/marketPlace", InventoryRouter);
+
 app.use("/oemspec", OEMRouter);
 app.use("*", (req, res) => {
   res.sendStatus(422);
