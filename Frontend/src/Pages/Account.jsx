@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useToast, Box } from "@chakra-ui/react";
 import Login from "../Components/Login";
 import SignUP from "../Components/SignUp";
@@ -48,7 +48,7 @@ const Account = () => {
 
   return (
     <Box mb={'50px'}>
-      <button onClick={() => setFlag(!flag)}>change</button>
+      {/* <button onClick={() => setFlag(!flag)}>change</button> */}
       {flag ? (
         <Login
           goToSignup={goToSignup}

@@ -34,14 +34,6 @@ const Home = () => {
     }
   };
 
-  const isLogin = useSelector((store) => store.isLogin);
-  const navigate = useNavigate();
-
-  if (!isLogin) {
-    navigate("/account");
-    return;
-  }
-
   return (
     <div className="text-white">
       <div className="w-1/3 my-5 px-5">

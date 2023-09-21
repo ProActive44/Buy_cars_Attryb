@@ -36,7 +36,7 @@ const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let user = {
-      username : name,
+      username: name,
       email,
       password,
     };
@@ -67,8 +67,9 @@ const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
               required
               onChange={(e) => setName(e.target.value)}
             />
-            <br />
-
+          </FormControl>
+          <br />
+          <FormControl>
             <FormLabel mb={"5px"}> Email </FormLabel>
             <Input
               mb={"10px"}
@@ -78,8 +79,9 @@ const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
               required
               onChange={(e) => setemail(e.target.value)}
             />
-            <br />
-
+          </FormControl>
+          <br />
+          <FormControl>
             <FormLabel mb={"5px"}> Password </FormLabel>
             <InputGroup size="md">
               <Input
@@ -100,10 +102,10 @@ const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-
-            <br />
-            <br />
-
+          </FormControl>
+          <br />
+          <br />
+          <FormControl>
             <Box className="text-center" my={"10px"}>
               <Text className="font-sans text-sm text-left" color={"grey"}>
                 I accept the BUYC Corp's
@@ -118,31 +120,31 @@ const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
                 </a>
               </Text>
             </Box>
-            <br />
-            <ButtonGroup variant="outline" width="100%">
-              <Button
-                type="submit"
-                className="text-center"
-                colorScheme="blue"
-                m={"auto"}
-              >
-                Sign Up
-              </Button>
-            </ButtonGroup>
-
-            <br />
-            <br />
-            <ButtonGroup width="100%">
-              <Button
-                className="btn"
-                colorScheme="blue"
-                m={"auto"}
-                onClick={goToLogin}
-              >
-                Already have an Account?
-              </Button>
-            </ButtonGroup>
           </FormControl>
+          <br />
+          <ButtonGroup variant="outline" width="100%">
+            <Button
+              type="submit"
+              className="text-center"
+              colorScheme="blue"
+              m={"auto"}
+            >
+              Sign Up
+            </Button>
+          </ButtonGroup>
+
+          <br />
+          <br />
+          <ButtonGroup width="100%">
+            <Button
+              className="btn"
+              colorScheme="blue"
+              m={"auto"}
+              onClick={goToLogin}
+            >
+              Already have an Account?
+            </Button>
+          </ButtonGroup>
         </form>
       </Box>
     </Box>

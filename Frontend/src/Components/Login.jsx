@@ -31,7 +31,7 @@ const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
   const handleClick = () => setShow(!show);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,8 +66,9 @@ const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
               required
               onChange={(e) => setemail(e.target.value)}
             />
-            <br />
-
+          </FormControl>
+          <br />
+          <FormControl>
             <FormLabel mb={"5px"}> Password </FormLabel>
             <InputGroup size="md">
               <Input
@@ -88,9 +89,10 @@ const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-
-            <br />
-            <br />
+          </FormControl>
+          <br />
+          <br />
+          <FormControl>
             <Box
               className="text-left"
               mb={"10px"}
@@ -109,46 +111,46 @@ const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
                 <Link>Forgot your password?</Link>
               </div>
             </Box>
-
-            <Box className="text-center" my={"10px"}>
-              <Text className="font-sans text-sm text-left" color={"grey"}>
-                I accept the BUYC Corp's
-                <Link className="hover_text_color"> Terms of Use</Link> and
-                acknowledge BUYC Corp will use my information in accordance with
-                its
-                <a
-                  //   href="https://www.specialized.com/sg/en/privacy-policy"
-                  className="hover:text-red"
-                >
-                  Privacy Policy.
-                </a>
-              </Text>
-            </Box>
-            <br />
-            <ButtonGroup variant="outline" width="100%">
-              <Button
-                type="submit"
-                className="text-center"
-                colorScheme="blue"
-                m={"auto"}
-              >
-                Sign In
-              </Button>
-            </ButtonGroup>
-
-            <br />
-            <br />
-            <ButtonGroup width="100%">
-              <Button
-                className="btn"
-                colorScheme="blue"
-                m={"auto"}
-                onClick={goToSignup}
-              >
-                Create Account
-              </Button>
-            </ButtonGroup>
           </FormControl>
+
+          <Box className="text-center" my={"10px"}>
+            <Text className="font-sans text-sm text-left" color={"grey"}>
+              I accept the BUYC Corp's
+              <Link className="hover_text_color"> Terms of Use</Link> and
+              acknowledge BUYC Corp will use my information in accordance with
+              its
+              <a
+                //   href="https://www.specialized.com/sg/en/privacy-policy"
+                className="hover:text-red"
+              >
+                Privacy Policy.
+              </a>
+            </Text>
+          </Box>
+          <br />
+          <ButtonGroup variant="outline" width="100%">
+            <Button
+              type="submit"
+              className="text-center"
+              colorScheme="blue"
+              m={"auto"}
+            >
+              Sign In
+            </Button>
+          </ButtonGroup>
+
+          <br />
+          <br />
+          <ButtonGroup width="100%">
+            <Button
+              className="btn"
+              colorScheme="blue"
+              m={"auto"}
+              onClick={goToSignup}
+            >
+              Create Account
+            </Button>
+          </ButtonGroup>
         </form>
       </Box>
     </Box>
