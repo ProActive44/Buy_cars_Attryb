@@ -10,10 +10,11 @@ const Home = () => {
   const data = useSelector((store) => store.Inventory);
 
   useEffect(() => {
+    
     dispatch(getAllInventory());
   }, []);
 
-  console.log(data);
+//   console.log(data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white ">
+    <div className="text-white">
       
       <div className="w-1/3 my-5 px-5">
         <form onSubmit={handleSubmit}>

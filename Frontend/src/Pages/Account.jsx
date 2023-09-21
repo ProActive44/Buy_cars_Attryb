@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useToast } from "@chakra-ui/react";
+import { useToast, Box } from "@chakra-ui/react";
 import Login from "./Login";
 import SignUP from "./SignUp";
 
@@ -47,7 +47,7 @@ const Account = () => {
   };
 
   return (
-    <div className="">
+    <Box mb={'50px'}>
       <button onClick={() => setFlag(!flag)}>change</button>
       {flag ? (
         <Login
@@ -58,7 +58,7 @@ const Account = () => {
       ) : (
         <SignUP goToLogin={goToLogin} accountCreated={accountCreated} />
       )}
-    </div>
+    </Box>
   );
 };
 

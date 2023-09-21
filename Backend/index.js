@@ -21,7 +21,7 @@ app.use("/user", userRouter);
 app.use((req, res, next) => {
   // Skip authentication for /user/login and /user/signup routes
   if (req.path === "/user/login" || req.path === "/user/signup") {
-    next(); 
+    next();
   } else {
     // Require authentication for other routes
     authMiddleware(req, res, next);

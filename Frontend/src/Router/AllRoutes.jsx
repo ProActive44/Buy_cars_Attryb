@@ -5,16 +5,16 @@ import Account from "../Pages/Account";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-//   const isLogin = useSelector((store) => store.isLogin);
-//   const navigate = useNavigate();
+  const isLogin = useSelector((store) => store.isLogin);
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//       console.log(isLogin)
-//     if (!isLogin) {
-//       navigate("/account");
-//       return;
-//     }
-//   }, [isLogin]);
+  useEffect(() => {
+      console.log(isLogin)
+    if (!isLogin) {
+      navigate("/account");
+      return;
+    }
+  }, [isLogin]);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
