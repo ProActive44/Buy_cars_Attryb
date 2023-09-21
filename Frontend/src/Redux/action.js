@@ -1,11 +1,10 @@
 import axios from "axios";
-import { LOGINUSER, LOGOUT } from "./actionTypes";
+import { GETINVENTORY, LOGINUSER, LOGOUT } from "./actionTypes";
 
 let mainURL = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
 export let signUpNewUser =
   (user, goToLogin, accountCreated, wrongDetails) => (dispatch) => {
-
     axios
       .post(`${mainURL}/user/signup`, user)
       .then((res) => {
@@ -51,7 +50,41 @@ export let loginNewUser =
       });
   };
 
-export let logOut = (dispatch)=>{
-    localStorage.removeItem("token");
-    dispatch({type:LOGOUT})
-}
+// export const getCurrentUser = (currUser)=> async (dispatch) => {
+//   try {
+//     const response = await axios.get(`${mainUrl}/signup/getuser`, currUser);
+//     if (response.data.msg === "User Found") {
+//       const user = response.data.user;
+//       dispatch(loginUserAction(user));
+//       localStorage.setItem("userEmail", JSON.stringify(user.email));
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//     // Handle login failure due to a network error or server issue
+//     return "failed";
+//   }
+// };
+
+export let logOut = (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({ type: LOGOUT });
+};
+
+// marketspace Inventory
+
+export const getAllInventory = (search="") => (dispatch) => {
+
+  let token = localStorage.getItem("token");
+  const headers = {
+    authorization: `Bearer ${token}`,
+  };
+
+  axios
+    .get(`${mainURL}/marketPlace?page=1&q=${search}`, { headers })
+    .then((res) => {
+      dispatch({ type: GETINVENTORY, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
