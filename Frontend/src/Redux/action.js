@@ -73,6 +73,7 @@ export let loginNewUser =
 // };
 
 export let logOut = (dispatch) => {
+  dispatch({ type: Loading });
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
 };

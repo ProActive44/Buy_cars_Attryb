@@ -4,6 +4,7 @@
   /* padding: 2rem; */
   text-align: center;
   width: 100vw;
+  min-width: 350px;
 }
 
 /* spinner */

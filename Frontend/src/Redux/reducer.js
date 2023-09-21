@@ -1,4 +1,10 @@
-import { GETALLOEM, GETINVENTORY, LOADING, LOGINUSER, LOGOUT } from "./actionTypes";
+import {
+  GETALLOEM,
+  GETINVENTORY,
+  LOADING,
+  LOGINUSER,
+  LOGOUT,
+} from "./actionTypes";
 
 const initState = {
   Inventory: [],
@@ -15,13 +21,19 @@ export const reducer = (state = initState, action) => {
   // console.log(payload)
   switch (type) {
     case LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, isError: false };
 
     case LOGINUSER:
-      return { ...state, isLogin: true, currUser: payload, isLoading:false, isError:false };
+      return {
+        ...state,
+        isLogin: true,
+        currUser: payload,
+        isLoading: false,
+        isError: false,
+      };
 
     case LOGOUT:
-      return { ...state, isLogin: false };
+      return { ...state, isLogin: false, isLoading: false, isError: false };
 
     case GETINVENTORY:
       return {

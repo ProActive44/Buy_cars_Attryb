@@ -10,10 +10,6 @@ const SellCars = () => {
   console.log(data);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllOEM());
-  }, []);
-
   const toast = useToast();
   const loginFirst = () => {
     toast({
@@ -33,6 +29,7 @@ const SellCars = () => {
       navigate("/account");
       return;
     }
+    dispatch(getAllOEM());
   }, [isLogin]);
 
   return (
