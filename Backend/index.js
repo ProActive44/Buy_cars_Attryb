@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   // Skip authentication for /user/login and /user/signup routes
   if (req.path === "/user/login" || req.path === "/user/signup") {
     next();
-  } else if (req.method === "GET" && req.baseUrl === "/marketPlace") {
+  } else if (req.method === "GET" && req.path === "/marketPlace") {
     // Skip authentication for GET requests on /marketPlace
     next();
   } else {
