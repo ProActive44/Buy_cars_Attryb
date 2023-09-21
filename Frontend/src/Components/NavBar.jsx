@@ -23,9 +23,9 @@ const NavBar = () => {
       <div className="flex gap-10 items-center mr-5">
         {!isLogin ? (
           <>
-            <Link>Sell Cars</Link>
-            <Link>Login</Link>
-            <Link>Sign up</Link>
+            <Link to="/sell">Sell Cars</Link>
+            <Link to='/account'>Login</Link>
+            <Link to='/account'>Sign up</Link>
           </>
         ) : (
           <>

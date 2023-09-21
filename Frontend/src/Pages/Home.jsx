@@ -7,6 +7,7 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -32,6 +33,14 @@ const Home = () => {
       handleSubmit(e);
     }
   };
+
+  const isLogin = useSelector((store) => store.isLogin);
+  const navigate = useNavigate();
+
+  if (!isLogin) {
+    navigate("/account");
+    return;
+  }
 
   return (
     <div className="text-white">

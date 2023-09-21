@@ -6,21 +6,13 @@ import { useSelector } from "react-redux";
 import SellCars from "../Pages/SellCars";
 
 const AllRoutes = () => {
-  const isLogin = useSelector((store) => store.isLogin);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-
-    if (!isLogin) {
-      navigate("/account");
-      return;
-    }
-  }, [isLogin]);
+  
+  
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/account" element={<Account />} />
-      <Route path='/sell' element={<SellCars/>}/>
+      <Route path="/sell" element={<SellCars />} />
     </Routes>
   );
 };
