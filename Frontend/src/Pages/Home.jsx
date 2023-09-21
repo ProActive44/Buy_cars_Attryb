@@ -62,7 +62,7 @@ const Home = () => {
                 <div className="w-1/2 p-5 ">
                   <img src={ele.image} className="rounded-md" />
                 </div>
-                <div className="border p-5 text-left flex flex-col gap-2 font-semibold">
+                <div className="p-5 text-left flex flex-col gap-2 font-semibold">
                   <p className="font-bold text-2xl md:text-4xl mb-1">
                     {ele.title}
                   </p>

@@ -102,7 +102,6 @@ export const getAllInventory =
 // sellcars OEM
 
 export const getAllOEM = () => (dispatch) => {
-  dispatch({ type: Loading });
   let token = localStorage.getItem("token");
   const headers = {
     authorization: `Bearer ${token}`,

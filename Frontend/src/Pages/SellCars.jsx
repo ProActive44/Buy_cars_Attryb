@@ -34,14 +34,11 @@ const SellCars = () => {
 
   return (
     <div className="text-white">
-      <h1 className="text-center">Sell Your Car</h1>
+      <h1 className="text-center my-5 font-serif font-bold text-yellow-300">Sell Your Car</h1>
       <div>
-        {data?.map((ele, idx) => {
-          return <div key={ele._id}></div>;
-        })}
+        <OEMTable data={data} />;
       </div>
-
-      <OEMTable />
+      
     </div>
   );
 };

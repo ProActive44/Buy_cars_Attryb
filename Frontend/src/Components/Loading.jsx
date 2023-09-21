@@ -17,7 +17,7 @@ const Loading = () => {
         <div></div>
         <div></div>
       </div>
-      <div className="text-slate-50">Loading</div>
+      {/* <div className="text-slate-50">Loading</div> */}
     </div>
   );
 };
