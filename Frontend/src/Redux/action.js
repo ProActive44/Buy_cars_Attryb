@@ -1,10 +1,16 @@
 import axios from "axios";
-import { GETINVENTORY, LOGINUSER, LOGOUT } from "./actionTypes";
+import { GETALLOEM, GETINVENTORY, LOGINUSER, LOGOUT } from "./actionTypes";
+import Loading from "../Components/Loading";
 
 let mainURL = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
+export const setLoading = (dispatch) => {
+  dispatch({ type: Loading });
+};
+
 export let signUpNewUser =
   (user, goToLogin, accountCreated, wrongDetails) => (dispatch) => {
+    dispatch({ type: Loading });
     axios
       .post(`${mainURL}/user/signup`, user)
       .then((res) => {
@@ -27,6 +33,7 @@ export let signUpNewUser =
 
 export let loginNewUser =
   (user, navigate, loginSuccess, wrongDetails) => (dispatch) => {
+    dispatch({ type: Loading });
     axios
       .post(`${mainURL}/user/login`, user)
       .then((res) => {
@@ -72,18 +79,37 @@ export let logOut = (dispatch) => {
 
 // marketspace Inventory
 
-export const getAllInventory = (search="") => (dispatch) => {
+export const getAllInventory =
+  (search = "") =>
+  (dispatch) => {
+    dispatch({ type: Loading });
+    let token = localStorage.getItem("token");
+    const headers = {
+      authorization: `Bearer ${token}`,
+    };
 
+    axios
+      .get(`${mainURL}/marketPlace?page=1&q=${search}`, { headers })
+      .then((res) => {
+        dispatch({ type: GETINVENTORY, payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+// sellcars OEM
+
+export const getAllOEM = () => (dispatch) => {
+  dispatch({ type: Loading });
   let token = localStorage.getItem("token");
   const headers = {
     authorization: `Bearer ${token}`,
   };
 
   axios
-    .get(`${mainURL}/marketPlace?page=1&q=${search}`, { headers })
-    .then((res) => {
-      dispatch({ type: GETINVENTORY, payload: res.data });
-    })
+    .get(`${mainURL}/oemspec`, { headers })
+    .then((res) => dispatch({ type: GETALLOEM, payload: res.data }))
     .catch((err) => {
       console.log(err);
     });

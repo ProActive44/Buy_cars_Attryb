@@ -10,7 +10,7 @@ const AllRoutes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-      console.log(isLogin)
+
     if (!isLogin) {
       navigate("/account");
       return;
