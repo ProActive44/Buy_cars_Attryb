@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useToast, Box } from "@chakra-ui/react";
-import Login from "./Login";
-import SignUP from "./SignUp";
+import Login from "../Components/Login";
+import SignUP from "../Components/SignUp";
 
 const Account = () => {
   const [flag, setFlag] = useState(false);
