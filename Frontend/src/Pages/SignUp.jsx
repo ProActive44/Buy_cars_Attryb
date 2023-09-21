@@ -19,8 +19,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUpNewUser } from "../Redux/action";
+import { useNavigate } from "react-router-dom";
 
-const SignUP = ({ flag, setFlag }) => {
+const SignUP = ({ flag, goToLogin, accountCreated, wrongDetails }) => {
   const [name, setName] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -28,8 +31,16 @@ const SignUP = ({ flag, setFlag }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let user = {
+      username : name,
+      email,
+      password,
+    };
+    dispatch(signUpNewUser(user, goToLogin, accountCreated, wrongDetails));
   };
 
   return (
@@ -126,7 +137,7 @@ const SignUP = ({ flag, setFlag }) => {
                 className="btn"
                 colorScheme="blue"
                 m={"auto"}
-                onClick={() => setFlag((prev) => !prev)}
+                onClick={goToLogin}
               >
                 Already have an Account?
               </Button>

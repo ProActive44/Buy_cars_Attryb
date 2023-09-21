@@ -1,15 +1,21 @@
+import { LOGINUSER, LOGOUT } from "./actionTypes";
+
 const initState = {
-  AllProducts: [],
-  totalPages: 1,
+  currUser: {},
+  isLogin: false,
   isLoading: false,
   isError: false,
-  currProduct: {},
-  debouncingArr: [],
 };
 
 export const reducer = (state = initState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOGINUSER:
+      return { ...state, isLogin: true, currUser: payload };
+
+    case LOGOUT:
+      return { ...state, isLogin: false };
+
     default:
       return state;
   }

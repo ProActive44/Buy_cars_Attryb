@@ -19,21 +19,31 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginNewUser } from "../Redux/action";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({flag,setFlag}) => {
+const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let user = {
+      email,
+      password,
+    };
+    dispatch(loginNewUser(user, navigate, loginSuccess, wrongDetails));
   };
 
   return (
-    <Box className={`text-center ${flag ? "slide-out" : ""}`} >
-    
+    <Box className={`text-center ${flag ? "slide-out" : ""}`}>
       <Box
         className="bg-white text-black font-sans rounded-2xl"
         w={{ base: "90%", sm: "80%", md: "60%", lg: "40%" }}
@@ -41,13 +51,12 @@ const Login = ({flag,setFlag}) => {
         p={{ base: "25px" }}
         bg={null}
       >
-        <Heading fontWeight="600" fontSize="32px" >
+        <Heading fontWeight="600" fontSize="32px">
           Sign in to your Account
         </Heading>
         <br />
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <FormControl>
-            
             <FormLabel mb={"5px"}> Email </FormLabel>
             <Input
               mb={"10px"}
@@ -91,11 +100,11 @@ const Login = ({flag,setFlag}) => {
                 <Checkbox
                   colorScheme="blue"
                   fontSize={{ base: "sm", sm: "md" }}
-                  >
+                >
                   Remember Me
                 </Checkbox>
               </div>
-                    
+
               <div className="my-1">
                 <Link>Forgot your password?</Link>
               </div>
@@ -103,12 +112,12 @@ const Login = ({flag,setFlag}) => {
 
             <Box className="text-center" my={"10px"}>
               <Text className="font-sans text-sm text-left" color={"grey"}>
-                I accept the BUYC Corp's 
+                I accept the BUYC Corp's
                 <Link className="hover_text_color"> Terms of Use</Link> and
-                acknowledge BUYC Corp will use my information in accordance
-                with its
+                acknowledge BUYC Corp will use my information in accordance with
+                its
                 <a
-                //   href="https://www.specialized.com/sg/en/privacy-policy"
+                  //   href="https://www.specialized.com/sg/en/privacy-policy"
                   className="hover:text-red"
                 >
                   Privacy Policy.
@@ -116,16 +125,26 @@ const Login = ({flag,setFlag}) => {
               </Text>
             </Box>
             <br />
-            <ButtonGroup variant="outline" width="100%" >
-              <Button type="submit" className="text-center" colorScheme="blue" m={'auto'}>
+            <ButtonGroup variant="outline" width="100%">
+              <Button
+                type="submit"
+                className="text-center"
+                colorScheme="blue"
+                m={"auto"}
+              >
                 Sign In
               </Button>
             </ButtonGroup>
 
             <br />
             <br />
-            <ButtonGroup  width="100%">
-              <Button className="btn" colorScheme="blue" m={'auto'} onClick={()=>setFlag(prev=>!prev)}>
+            <ButtonGroup width="100%">
+              <Button
+                className="btn"
+                colorScheme="blue"
+                m={"auto"}
+                onClick={goToSignup}
+              >
                 Create Account
               </Button>
             </ButtonGroup>
