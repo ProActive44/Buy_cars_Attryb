@@ -43,14 +43,16 @@ const userLogin = async (req, res) => {
 
     if (correct_pass) {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-      res.status(200).send({ msg: "Login Successful", token });
+      res.status(200).send({ msg: "Login Successful", token, user });
     } else {
-      res.status(401).send({ msg: "Please enter the correct credentials" });
+      res.status(401).send({ msg: "Please enter the correct credentials" , data:user});
     }
   } catch (error) {
     console.error(error);
     res.status(500).send({ msg: "Login Failed", error: error.message });
   }
 };
+
+
 
 module.exports = { userSignup, userLogin };

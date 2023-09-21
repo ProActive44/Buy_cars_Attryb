@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
         return res.status(401).send({ msg: "Unauthorized: Token invalid" });
       }
       if (decoded) {
-        req.body.userId = decoded.userId;
+        req.body._id = decoded.userId;
         next();
       }
     });

@@ -25,7 +25,7 @@ const addOEM = async (req, res) => {
     const { model, year, listPrice, colors, mileage, power, maxSpeed } =
       req.body;
 
-    const provider = req.user._id;
+    const provider = req.body._id;
 
     const newOEM = new OEMModel({
       model,

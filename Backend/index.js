@@ -16,9 +16,18 @@ app.get("/", (req, res) => {
   res.send("Welcome to the BUYC Corp");
 });
 
-
 app.use("/user", userRouter);
-app.use(authMiddleware); 
+
+app.use((req, res, next) => {
+  // Skip authentication for /user/login and /user/signup routes
+  if (req.path === "/user/login" || req.path === "/user/signup") {
+    next(); 
+  } else {
+    // Require authentication for other routes
+    authMiddleware(req, res, next);
+  }
+});
+
 app.use("/marketPlace", InventoryRouter);
 app.use("/oemspec", OEMRouter);
 app.use("*", (req, res) => {

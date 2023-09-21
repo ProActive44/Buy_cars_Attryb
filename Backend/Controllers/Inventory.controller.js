@@ -16,7 +16,7 @@ const addInventory = async (req, res) => {
       registrationPlace,
       price,
     } = req.body;
-    const dealer = req.user._id;
+    const dealer = req.body._id;
 
     const Inventory = new InventoryModel({
       dealer,
@@ -48,7 +48,7 @@ const addInventory = async (req, res) => {
 };
 
 const deleteInventory = async (req, res) => {
-  const dealer = req.user._id;
+  const dealer = req.body._id;
   let { id } = req.query;
   if (!Array.isArray(id)) {
     id = [id];
@@ -80,7 +80,7 @@ const deleteInventory = async (req, res) => {
 };
 
 const editInventory = async (req, res) => {
-  const dealer = req.user._id;
+  const dealer = req.body._id;
   const { id } = req.params;
   const updateFields = req.body;
 
@@ -117,14 +117,31 @@ const getAllInventory = async (req, res) => {
       }
     }
 
-    if (q === "price" && lte) {
-      filter.price = { $lte: parseInt(lte) };
-    }
-    if (q === "price" && gte) {
-      filter.price = { $gte: parseInt(gte) };
-    }
+    // if (q === "price" && lte) {
+    //   filter.price = { $lte: parseInt(lte) };
+    // }
+    // if (q === "price" && gte) {
+    //   filter.price = { $gte: parseInt(gte) };
+    // }
     if (color) {
       filter.colors = { $in: [color] };
+    }
+
+    if (q) {
+      filter.$or = [
+        { title: { $regex: q, $options: "i" } },
+        { description: { $regex: q, $options: "i" } },
+        { majorScratches: { $regex: q, $options: "i" } },
+        { registrationPlace: { $regex: q, $options: "i" } },
+      ];
+    }
+
+    if (!isNaN(parseFloat(q))) {
+      // If `q` is a valid number, search numeric fields
+      filter.$or.push({ kmsOnOdometer: parseFloat(q) });
+      filter.$or.push({ price: parseFloat(q) });
+      filter.$or.push({ accidentsReported: parseInt(q) });
+      filter.$or.push({ previousBuyers: parseInt(q) });
     }
 
     const totalCount = await InventoryModel.countDocuments(filter);
