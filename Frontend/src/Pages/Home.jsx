@@ -44,8 +44,8 @@ const Home = () => {
               id={"mainSearch"}
               placeholder="Search"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
               onKeyPress={handleKeyPress}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <FormHelperText textAlign='left'>Press Enter</FormHelperText>
           </FormControl>
@@ -57,7 +57,7 @@ const Home = () => {
             return (
               <div
                 key={ele._id}
-                className="flex mb-5 bg-white rounded-xl text-black wrap cursor-pointer"
+                className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer"
               >
                 <div className="w-1/2 p-5 ">
                   <img src={ele.image} className="rounded-md" />
@@ -78,7 +78,7 @@ const Home = () => {
             );
           })
         ) : (
-          <div>No Products found refresh page</div>
+          <div>Loading please wait...</div>
         )}
       </div>
     </div>
