@@ -10,21 +10,21 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-gray-300 p-4">
+    <footer className="bg-gray-800 text-gray-300 p-4 rounded-t-2xl">
     
       <Flex my={"5"} flexWrap={'wrap'} justify={"space-around"}>
-        <Flex w="40%"className="flex-col gap-4 min-w-[250px] my-5 flex-1 mx-4">
+        <Flex w="40%" className="flex-col gap-4 min-w-[250px] my-5 flex-1 mx-4" >
           <Text className="font-extrabold text-4xl text-left"> BUYC CORP </Text>
           <Text className="text-left font-semibold">
             It's a never ending battle of making your cars better and also
             trying to be better yourself.
           </Text>
           <div>
-            <Flex gap={"5"}>
-              <FontAwesomeIcon icon={faSquareFacebook} size="2xl" />
-              <FontAwesomeIcon icon={faTwitter} size="2xl" />
-              <FontAwesomeIcon icon={faInstagram} size="2xl" />
-              <FontAwesomeIcon icon={faLinkedin} size="2xl" />
+            <Flex gap={"5"} >
+              <FontAwesomeIcon icon={faSquareFacebook} size="xl" className="hover:cursor-pointer hover:scale-110"/>
+              <FontAwesomeIcon icon={faTwitter} size="xl" className="hover:cursor-pointer hover:scale-110"/>
+              <FontAwesomeIcon icon={faInstagram} size="xl" className="hover:cursor-pointer hover:scale-110"/>
+              <FontAwesomeIcon icon={faLinkedin} size="xl" className="hover:cursor-pointer hover:scale-110"/>
             </Flex>
           </div>
         </Flex>
