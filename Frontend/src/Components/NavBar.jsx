@@ -17,7 +17,7 @@ const NavBar = () => {
         Website is currently under construction, Thank you for your patience!
       </Box>
       <Box
-        className="flex justify-between bg-blue.200 items-center h-13 border px-1 md:px-5 sm:px-10 bg-blue-50 rounded sticky top-0 z-10 mb-5 border-b-black"
+        className="flex justify-between bg-blue.200 items-center h-13 px-1 md:px-5 sm:px-10 bg-blue-50 rounded sticky top-0 z-10 mb-5 border-b-black border-2"
         minW="350px"
       >
         <div className="cursor-pointer">

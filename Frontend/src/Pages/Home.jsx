@@ -15,6 +15,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const data = useSelector((store) => store.Inventory);
+  const isLoading = useSelector((store) => store.isLoading);
+
+  console.log(isLoading);
 
   useEffect(() => {
     dispatch(getAllInventory());
@@ -54,7 +57,9 @@ const Home = () => {
             <FormHelperText textAlign="left">Press Enter</FormHelperText>
           </FormControl>
         </form>
-        <Button onClick={handleReset} className="mt-1">RESET</Button>
+        <Button onClick={handleReset} className="mt-1">
+          RESET
+        </Button>
       </div>
       <div className="font-serif">
         {data.length > 0 ? (
@@ -82,8 +87,12 @@ const Home = () => {
               </div>
             );
           })
+        ) : isLoading ? (
+          <div className="mb-10">Loading please wait...</div>
+        ) : data.length === 0 ? (
+          <div className="mb-10">No Car Found.</div>
         ) : (
-          <div>Loading please wait...</div>
+          <></>
         )}
       </div>
     </div>
