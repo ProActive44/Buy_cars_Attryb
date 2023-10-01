@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-gray-300 p-4">
     
-      <Flex my={"5"}>
-        <Flex w="40%" className="flex-col gap-4">
+      <Flex my={"5"} flexWrap={'wrap'} justify={"space-around"}>
+        <Flex w="40%"className="flex-col gap-4 min-w-[250px] my-5 flex-1 mx-4">
           <Text className="font-extrabold text-4xl text-left"> BUYC CORP </Text>
           <Text className="text-left font-semibold">
             It's a never ending battle of making your cars better and also
@@ -28,8 +28,8 @@ const Footer = () => {
             </Flex>
           </div>
         </Flex>
-        <Box flex={"1"}>
-          <Flex justify={"space-around"} >
+        <Box flex={"1"} my={'3'}>
+          <Flex justify={"space-around"}>
             <Flex className="flex-col text-left gap-1">
               <Text fontSize={{ base: "lg", md: "xl" }} my={'2'} fontWeight={"bold"}>
                 Account
