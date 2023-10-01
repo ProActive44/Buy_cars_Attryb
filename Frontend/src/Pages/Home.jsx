@@ -36,18 +36,17 @@ const Home = () => {
 
   return (
     <div className="text-white">
-      <div className="w-1/3 my-5 px-5">
+      <div className="w-100 md:w-1/2 lg:w-1/3 my-5 px-5">
         <form onSubmit={handleSubmit}>
           <FormControl>
-            <FormLabel htmlFor="mainSearch">Search cars here</FormLabel>
+            <FormLabel>Search cars here</FormLabel>
             <Input
-              id={"mainSearch"}
               placeholder="Search"
               value={search}
               onKeyPress={handleKeyPress}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <FormHelperText textAlign='left'>Press Enter</FormHelperText>
+            <FormHelperText textAlign="left">Press Enter</FormHelperText>
           </FormControl>
         </form>
       </div>
@@ -59,7 +58,7 @@ const Home = () => {
                 key={ele._id}
                 className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer"
               >
-                <div className="w-1/2 p-5 ">
+                <div className="w-100 md:w-1/2 p-5 ">
                   <img src={ele.image} className="rounded-md" />
                 </div>
                 <div className="p-5 text-left flex flex-col gap-2 font-semibold">
