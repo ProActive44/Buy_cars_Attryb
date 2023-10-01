@@ -1,16 +1,15 @@
 import axios from "axios";
-import { GETALLOEM, GETINVENTORY, LOGINUSER, LOGOUT } from "./actionTypes";
-import Loading from "../Components/Loading";
+import { GETALLOEM, GETINVENTORY, LOADING, LOGINUSER, LOGOUT } from "./actionTypes";  
 
 let mainURL = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
 export const setLoading = (dispatch) => {
-  dispatch({ type: Loading });
+  dispatch({ type: LOADING });
 };
 
 export let signUpNewUser =
   (user, goToLogin, accountCreated, wrongDetails) => (dispatch) => {
-    dispatch({ type: Loading });
+    dispatch({ type: LOADING });
     axios
       .post(`${mainURL}/user/signup`, user)
       .then((res) => {
@@ -33,7 +32,7 @@ export let signUpNewUser =
 
 export let loginNewUser =
   (user, navigate, loginSuccess, wrongDetails) => (dispatch) => {
-    dispatch({ type: Loading });
+    dispatch({ type: LOADING });
     axios
       .post(`${mainURL}/user/login`, user)
       .then((res) => {
@@ -73,7 +72,7 @@ export let loginNewUser =
 // };
 
 export let logOut = (dispatch) => {
-  dispatch({ type: Loading });
+  dispatch({ type: LOADING });
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
 };
@@ -83,7 +82,7 @@ export let logOut = (dispatch) => {
 export const getAllInventory =
   (search = "") =>
   (dispatch) => {
-    dispatch({ type: Loading });
+    dispatch({ type: LOADING });
     let token = localStorage.getItem("token");
     const headers = {
       authorization: `Bearer ${token}`,

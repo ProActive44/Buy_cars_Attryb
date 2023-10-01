@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllInventory } from "../Redux/action";
 import {
+  Button,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -27,6 +28,10 @@ const Home = () => {
     setSearch("");
   };
 
+  const handleReset = () => {
+    dispatch(getAllInventory());
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       // Submit the form when the Enter key is pressed
@@ -36,8 +41,8 @@ const Home = () => {
 
   return (
     <div className="text-white">
-      <div className="w-100 md:w-1/2 lg:w-1/3 my-5 px-5">
-        <form onSubmit={handleSubmit}>
+      <div className="flex gap-2 w-100 md:w-1/2 lg:w-1/3 my-5 px-5 justify-between items-center">
+        <form onSubmit={handleSubmit} className="flex-1">
           <FormControl>
             <FormLabel>Search cars here</FormLabel>
             <Input
@@ -49,6 +54,7 @@ const Home = () => {
             <FormHelperText textAlign="left">Press Enter</FormHelperText>
           </FormControl>
         </form>
+        <Button onClick={handleReset} className="mt-1">RESET</Button>
       </div>
       <div className="font-serif">
         {data.length > 0 ? (
