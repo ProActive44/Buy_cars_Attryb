@@ -4,6 +4,7 @@ import { getAllOEM } from "../Redux/action";
 import OEMTable from "../Components/OEMTable";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
+import AddNewCar from "../Components/AddNewCar";
 
 const SellCars = () => {
   const data = useSelector((store) => store.OEM);
@@ -36,9 +37,11 @@ const SellCars = () => {
     <div className="text-white">
       <h1 className="text-center my-5 font-serif font-bold text-yellow-300">Sell Your Car</h1>
       <div>
-        <OEMTable data={data} />;
+        {/* <OEMTable data={data} />; */}
       </div>
-      
+      <div>
+        <AddNewCar/>
+      </div>
     </div>
   );
 };
