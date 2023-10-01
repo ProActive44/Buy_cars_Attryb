@@ -7,7 +7,7 @@ import { useToast } from "@chakra-ui/react";
 
 const SellCars = () => {
   const data = useSelector((store) => store.OEM);
-  console.log(data);
+  // console.log(data);
   const dispatch = useDispatch();
 
   const toast = useToast();
@@ -24,11 +24,11 @@ const SellCars = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLogin) {
-      loginFirst();
-      navigate("/account");
-      return;
-    }
+    // if (!isLogin) {
+    //   loginFirst();
+    //   navigate("/account");
+    //   return;
+    // }
     dispatch(getAllOEM());
   }, [isLogin]);
 

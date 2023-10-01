@@ -119,12 +119,7 @@ const Login = ({ flag, goToSignup, loginSuccess, wrongDetails }) => {
               <Link className="hover_text_color"> Terms of Use</Link> and
               acknowledge BUYC Corp will use my information in accordance with
               its
-              <a
-                //   href="https://www.specialized.com/sg/en/privacy-policy"
-                className="hover:text-red"
-              >
-                Privacy Policy.
-              </a>
+              <Link className="hover_text_color"> Privacy Policy.</Link>
             </Text>
           </Box>
           <br />
