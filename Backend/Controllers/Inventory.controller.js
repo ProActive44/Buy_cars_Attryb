@@ -7,7 +7,7 @@ const addInventory = async (req, res) => {
       title,
       description,
       oemSpecs,
-      colors,
+      // colors,
       kmsOnOdometer,
       majorScratches,
       originalPaint,
@@ -15,9 +15,29 @@ const addInventory = async (req, res) => {
       previousBuyers,
       registrationPlace,
       price,
+      dealer, // Temperary
     } = req.body;
-    const dealer = req.body._id;
+    // const dealer = req.body._id;
 
+    const uploadedFile = req.file;
+
+    if (!uploadedFile) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // Create a file URL based on where it was saved
+    const fileURL = `/Images/${uploadedFile.filename}`;
+
+    console.log(req.body);
+    console.log(uploadedFile);
+    console.log(fileURL);
+
+    if (!title) {
+      res.send({ msg: "No body" });
+    }
+    if (req.file === undefined) {
+      res.send({ msg: "No file" });
+    }
     const Inventory = new InventoryModel({
       dealer,
       oemSpecs,
@@ -25,7 +45,7 @@ const addInventory = async (req, res) => {
       title,
       description,
       price,
-      colors,
+      // colors,
       kmsOnOdometer,
       majorScratches,
       originalPaint,
@@ -34,7 +54,7 @@ const addInventory = async (req, res) => {
       registrationPlace,
     });
 
-    await Inventory.save();
+    // await Inventory.save();
 
     res
       .status(201)
@@ -146,7 +166,7 @@ const getAllInventory = async (req, res) => {
 
     const totalCount = await InventoryModel.countDocuments(filter);
     const OEMS = await InventoryModel.find(filter)
-      .populate("oemSpecs", { _id: 0 })
+      .populate("oemSpecs", {})
       .sort(Sort);
     res.status(200).send({ totalCount, Inventory: OEMS });
   } catch (error) {
