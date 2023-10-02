@@ -9,6 +9,27 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import axios from "axios";
+import { postNewCar } from "../Redux/action";
+  // const uploadImage = async (image) => {
+  //   try {
+  //     let res = await axios.post("http://localhost:8080/upload/image", image, {
+  //       headers: {
+  //         "Content-Type": `multipart/form-data; boundary=${image._boundary}`,
+  //       },
+  //     });
+
+  //     if (res.status == 200) {
+  //       return res.data.imageUrl;
+  //     } else {
+  //       console.log(res);
+  //       throw err;
+  //     }
+  //   } catch {
+  //     console.error(err);
+  //     throw err;
+  //   }
+  // };
 
 const AddNewCar = () => {
   const [formData, setFormData] = useState({
@@ -25,20 +46,33 @@ const AddNewCar = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
+    let newValue = type === "checkbox" ? checked : value;
+    if (type === "file") {
+      newValue = e.target.files[0];
+    }
     setFormData((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // const image = e.target.Image.files[0];
+    // let imageUrl = await uploadImage({ image });
+    let oemSpecs = "650b9d5ea52cfcc5673d7192";
+    let dealer = "650b2a26b0a0fb3de587154a";
+    setFormData((prevState) => ({
+      ...prevState,
+      oemSpecs,
+      dealer,
+    }));
+    // console.log("formData", formData);
+    postNewCar(formData);
   };
   return (
     <div className="bg-gray-700 p-4 rounded-lg mb-32">
       <form className="text-left" onSubmit={handleSubmit}>
         <FormControl className="mb-4">
           <FormLabel>Upload an Image</FormLabel>
-          <Input type="file" required />
+          <Input type="file" name="image" required onChange={handleChange} />
         </FormControl>
         <FormControl className="mb-4">
           <FormLabel>Title:</FormLabel>
@@ -85,7 +119,7 @@ const AddNewCar = () => {
         <FormControl className="mb-4">
           <FormLabel>Major Scratches:</FormLabel>
           <Input
-            type="number"
+            type="text"
             placeholder="No of major scratches"
             min="0"
             name="majorScratches"
