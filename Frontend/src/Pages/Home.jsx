@@ -17,7 +17,7 @@ const Home = () => {
   const data = useSelector((store) => store.Inventory);
   const isLoading = useSelector((store) => store.isLoading);
 
-  console.log(isLoading);
+  // console.log(isLoading);
 
   useEffect(() => {
     dispatch(getAllInventory());
@@ -42,7 +42,7 @@ const Home = () => {
     }
   };
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="text-white">
       <div className="flex gap-2 w-100 md:w-1/2 lg:w-1/3 my-5 px-5 justify-between items-center">

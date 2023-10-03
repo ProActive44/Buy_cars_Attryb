@@ -118,42 +118,48 @@ export const getAllInventory =
   };
 
 // Post new car
-export const postNewCar = (newCar) => {
+export const postNewCar = async (newCar) => {
   const formData = new FormData();
-  formData.append('image', newCar.image);
-  formData.append('title', newCar.title);
-  formData.append('description', newCar.description);
-  formData.append('price', newCar.price);
-  formData.append('kmsOnOdometer', newCar.kmsOnOdometer);
-  formData.append('majorScratches', newCar.majorScratches);
-  formData.append('originalPaint', newCar.originalPaint);
-  formData.append('accidentsReported', newCar.accidentsReported);
-  formData.append('previousBuyers', newCar.previousBuyers);
-  formData.append('registrationPlace', newCar.registrationPlace);
-  formData.append('oemSpecs', newCar.oemSpecs);
-  formData.append('dealer', newCar.dealer); 
+  formData.append("image", newCar.image);
+  formData.append("title", newCar.title);
+  formData.append("description", newCar.description);
+  formData.append("price", newCar.price);
+  formData.append("kmsOnOdometer", newCar.kmsOnOdometer);
+  formData.append("majorScratches", newCar.majorScratches);
+  formData.append("originalPaint", newCar.originalPaint);
+  formData.append("accidentsReported", newCar.accidentsReported);
+  formData.append("previousBuyers", newCar.previousBuyers);
+  formData.append("registrationPlace", newCar.registrationPlace);
+  formData.append("oemSpecs", newCar.oemSpecs);
+  formData.append("dealer", newCar.dealer);
 
-  console.log(newCar)
+  console.log(newCar);
+  console.log(formData);
 
-  axios
-    .post(`${mainURL}/marketPlace`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then((res) => {
-      if (res.status === 201) {
-        console.log(res.data);
-        // toastMsg("New Car added", "Your car is ready to be sold", "success");
-      } else {
-        toastMsg(
-          "Something went wrong please try again",
-          res.data.message,
-          "error"
-        );
-      }
-    })
-    .catch((err) => console.log(err));
+  const result = await axios.post(`${mainURL}/marketPlace`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  console.log("result", result.data);  
+  // axios
+  //   .post(`${mainURL}/marketPlace`, formData, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //   })
+  //   .then((res) => {
+  //     if (res.status === 201) {
+  //       console.log(res.data);
+  //       // toastMsg("New Car added", "Your car is ready to be sold", "success");
+  //     } else {
+  //       toastMsg(
+  //         "Something went wrong please try again",
+  //         res.data.message,
+  //         "error"
+  //       );
+  //     }
+  //   })
+  //   .catch((err) => console.log(err));
 };
 
 // sellcars OEM

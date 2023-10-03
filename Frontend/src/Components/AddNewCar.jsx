@@ -72,7 +72,7 @@ const AddNewCar = () => {
       <form className="text-left" onSubmit={handleSubmit}>
         <FormControl className="mb-4">
           <FormLabel>Upload an Image</FormLabel>
-          <Input type="file" name="image" required onChange={handleChange} />
+          <Input type="file" name="image" accept="image/*" required onChange={handleChange} />
         </FormControl>
         <FormControl className="mb-4">
           <FormLabel>Title:</FormLabel>

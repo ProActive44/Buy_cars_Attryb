@@ -15,7 +15,7 @@ const formData = require('express-form-data');
 
 app.use(cors());
 app.use(express.json());       
-app.use(express.urlencoded({extended: true})); 
+// app.use(express.urlencoded({extended: true})); 
 app.use(formData.parse());
 
 app.get("/", (req, res) => { 
@@ -48,7 +48,7 @@ app.use("/marketPlace", InventoryRouter);
 app.use("/oemspec", OEMRouter); 
 app.use("*", (req, res) => {
   res.sendStatus(422);
-});
+}); 
 
 app.listen(process.env.PORT, async () => {
   try {
@@ -57,4 +57,4 @@ app.listen(process.env.PORT, async () => {
   } catch (error) {
     console.log(error);
   }
-});
+}); 
