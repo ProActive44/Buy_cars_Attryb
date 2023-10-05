@@ -19,25 +19,6 @@ const addInventory = async (req, res) => {
     } = req.body;
     // const dealer = req.body._id;
 
-    const uploadedFile = req.file;
-
-    if (!uploadedFile) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
-
-    // Create a file URL based on where it was saved
-    const fileURL = `/Images/${uploadedFile.filename}`;
-
-    console.log(req.body);
-    console.log(uploadedFile);
-    console.log(fileURL);
-
-    if (!title) {
-      res.send({ msg: "No body" });
-    }
-    if (req.file === undefined) {
-      res.send({ msg: "No file" });
-    }
     const Inventory = new InventoryModel({
       dealer,
       oemSpecs,
@@ -54,7 +35,7 @@ const addInventory = async (req, res) => {
       registrationPlace,
     });
 
-    // await Inventory.save();
+    await Inventory.save();
 
     res
       .status(201)

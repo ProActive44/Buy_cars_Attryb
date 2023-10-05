@@ -6,24 +6,20 @@ const userRouter = require("./Routes/user.Router");
 const authMiddleware = require("./Middlewares/auth.middleware");
 const InventoryRouter = require("./Routes/Inventory.Router");
 const OEMRouter = require("./Routes/OEM.Router");
-const ImageUpload = require("./Routes/ImageUpload");
+const ImageRouter = require("./Routes/Images.Router");
 
 const app = express();
 
-const formData = require('express-form-data');
-
-
 app.use(cors());
-app.use(express.json());       
-// app.use(express.urlencoded({extended: true})); 
-app.use(formData.parse());
+app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
-app.get("/", (req, res) => { 
+app.get("/", (req, res) => {
   res.send("Welcome to the BUYC Corp");
 });
 
 app.use("/user", userRouter);
-app.use("/upload/image", ImageUpload);
+app.use("/images", ImageRouter); 
 
 app.use((req, res, next) => {
   // Skip authentication for /user/login and /user/signup routes
@@ -45,10 +41,10 @@ app.use((req, res, next) => {
 
 app.use("/marketPlace", InventoryRouter);
 
-app.use("/oemspec", OEMRouter); 
+app.use("/oemspec", OEMRouter);
 app.use("*", (req, res) => {
   res.sendStatus(422);
-}); 
+});
 
 app.listen(process.env.PORT, async () => {
   try {
@@ -57,4 +53,4 @@ app.listen(process.env.PORT, async () => {
   } catch (error) {
     console.log(error);
   }
-}); 
+});
