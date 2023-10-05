@@ -7,19 +7,6 @@ import {
   LOGOUT,
 } from "./actionTypes";
 
-const toastMsg = (title, des, status) => {
-  console.log({
-    title: title,
-    description: des,
-    status: status,
-    duration: 5000,
-    isClosable: true,
-    position: "bottom-left",
-  });
-
-  return null;
-};
-
 let mainURL = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
 export const setLoading = (dispatch) => {
@@ -119,47 +106,18 @@ export const getAllInventory =
 
 // Post new car
 export const postNewCar = async (newCar) => {
-  const formData = new FormData();
-  formData.append("image", newCar.image);
-  formData.append("title", newCar.title);
-  formData.append("description", newCar.description);
-  formData.append("price", newCar.price);
-  formData.append("kmsOnOdometer", newCar.kmsOnOdometer);
-  formData.append("majorScratches", newCar.majorScratches);
-  formData.append("originalPaint", newCar.originalPaint);
-  formData.append("accidentsReported", newCar.accidentsReported);
-  formData.append("previousBuyers", newCar.previousBuyers);
-  formData.append("registrationPlace", newCar.registrationPlace);
-  formData.append("oemSpecs", newCar.oemSpecs);
-  formData.append("dealer", newCar.dealer);
-
-  console.log(newCar);
-  console.log(formData);
-
-  const result = await axios.post(`${mainURL}/marketPlace`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-
-  console.log("result", result.data);  
-  // axios
-  //   .post(`${mainURL}/marketPlace`, formData, {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   })
-  //   .then((res) => {
-  //     if (res.status === 201) {
-  //       console.log(res.data);
-  //       // toastMsg("New Car added", "Your car is ready to be sold", "success");
-  //     } else {
-  //       toastMsg(
-  //         "Something went wrong please try again",
-  //         res.data.message,
-  //         "error"
-  //       );
-  //     }
-  //   })
-  //   .catch((err) => console.log(err));
+  axios
+    .post(`${mainURL}/marketPlace`, newCar)
+    .then((res) => {
+      if (res.status === 201) {
+        console.log(res.data);
+        alert("New Car added");
+      } else {
+        alert(
+          "Something went wrong please try again");
+      }
+    })
+    .catch((err) => console.log(err));
 };
 
 // sellcars OEM

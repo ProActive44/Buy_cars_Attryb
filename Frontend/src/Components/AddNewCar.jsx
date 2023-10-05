@@ -1,8 +1,6 @@
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Textarea,
   Button,
   Input,
@@ -11,28 +9,28 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import { postNewCar } from "../Redux/action";
-  // const uploadImage = async (image) => {
-  //   try {
-  //     let res = await axios.post("http://localhost:8080/upload/image", image, {
-  //       headers: {
-  //         "Content-Type": `multipart/form-data; boundary=${image._boundary}`,
-  //       },
-  //     });
+let mainURL = import.meta.env.VITE_REACT_APP_SERVER_URL;
 
-  //     if (res.status == 200) {
-  //       return res.data.imageUrl;
-  //     } else {
-  //       console.log(res);
-  //       throw err;
-  //     }
-  //   } catch {
-  //     console.error(err);
-  //     throw err;
-  //   }
-  // };
+const uploadImage = async (image) => {
+  try {
+    let res = await axios.post(`${mainURL}/images/upload`, image, {
+      headers: {
+        "Content-Type": `multipart/form-data; boundary=${image._boundary}`,
+      },
+    });
+    if (res.status == 200) {
+      return res.data.filename;
+    } else {
+      console.log(res);
+      throw err;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const AddNewCar = () => {
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     title: "",
     description: "",
     price: 0,
@@ -50,29 +48,42 @@ const AddNewCar = () => {
     if (type === "file") {
       newValue = e.target.files[0];
     }
-    setFormData((prevState) => ({ ...prevState, [name]: newValue }));
+    setData((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const image = e.target.Image.files[0];
-    // let imageUrl = await uploadImage({ image });
+    const image = e.target.image.files[0];
+
+    let filename = await uploadImage({ image });
+    let imageUrl = `${mainURL}/images/${filename}`;
     let oemSpecs = "650b9d5ea52cfcc5673d7192";
     let dealer = "650b2a26b0a0fb3de587154a";
-    setFormData((prevState) => ({
-      ...prevState,
+
+    let newData = {
+      ...data,
       oemSpecs,
       dealer,
-    }));
-    // console.log("formData", formData);
-    postNewCar(formData);
+      image: imageUrl,
+    };
+
+    setData(newData);
+    postNewCar(newData);
+    
+    e.target.reset();
   };
   return (
     <div className="bg-gray-700 p-4 rounded-lg mb-32">
       <form className="text-left" onSubmit={handleSubmit}>
         <FormControl className="mb-4">
           <FormLabel>Upload an Image</FormLabel>
-          <Input type="file" name="image" accept="image/*" required onChange={handleChange} />
+          <Input
+            type="file"
+            name="image"
+            accept="image/jpeg,jpg,png,svg"
+            required
+            onChange={handleChange}
+          />
         </FormControl>
         <FormControl className="mb-4">
           <FormLabel>Title:</FormLabel>
