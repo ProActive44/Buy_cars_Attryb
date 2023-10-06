@@ -9,6 +9,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import SingleCar from "../Components/SingleCar";
+import CarCard from "../Components/CarCard";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -44,7 +46,7 @@ const Home = () => {
 
   // console.log(data);
   return (
-    <div className="text-white">
+    <div className="text-white mb-10">
       <div className="flex gap-2 w-100 md:w-1/2 lg:w-1/3 my-5 px-5 justify-between items-center">
         <form onSubmit={handleSubmit} className="flex-1">
           <FormControl>
@@ -64,30 +66,11 @@ const Home = () => {
       </div>
       <div className="font-serif">
         {data.length > 0 ? (
-          data?.map((ele, idx) => {
-            return (
-              <div
-                key={ele._id}
-                className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer"
-              >
-                <div className="w-100 md:w-1/2 p-5 ">
-                  <img src={ele.image} className="rounded-md" />
-                </div>
-                <div className="p-5 text-left flex flex-col gap-2 font-semibold">
-                  <p className="font-bold text-2xl md:text-4xl mb-1">
-                    {ele.title}
-                  </p>
-                  <p>{ele.description}</p>
-                  <p>{ele.majorScratches}</p>
-                  <p>{ele.kmsOnOdometer}</p>
-                  <p>originalPaint: {ele.originalPaint ? "Yes" : "No"}</p>
-                  <p>previousBuyers: {ele.previousBuyers}</p>
-                  <p>Price: {ele.price}</p>
-                  <p>registrationPlace: {ele.registrationPlace}</p>
-                </div>
-              </div>
-            );
-          })
+          <div className="flex flex-wrap gap-2 p-2">
+            {data?.map((ele, idx) => {
+              return <CarCard key={ele._id} ele={ele}/>
+            })}
+          </div>
         ) : isLoading ? (
           <div className="mb-10">Loading please wait...</div>
         ) : data.length === 0 ? (
