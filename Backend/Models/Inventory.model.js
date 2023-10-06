@@ -8,6 +8,7 @@ const InventorySchema = new Schema(
     image: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number },
+    color: { type: String },
     kmsOnOdometer: { type: Number },
     majorScratches: { type: String },
     originalPaint: { type: Boolean },
