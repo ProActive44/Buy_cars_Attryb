@@ -5,6 +5,7 @@ import {
   Button,
   Input,
   Checkbox,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
@@ -29,7 +30,7 @@ const uploadImage = async (image) => {
   }
 };
 
-const AddNewCar = () => {
+const AddNewCar = ({ oem }) => {
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -53,27 +54,40 @@ const AddNewCar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!oem) {
+      alert("Please select OEM");
+      return;
+    }
+
     const image = e.target.image.files[0];
 
     let filename = await uploadImage({ image });
     let imageUrl = `${mainURL}/images/${filename}`;
-    let oemSpecs = "650b9d5ea52cfcc5673d7192";
+    // let oemSpecs = "650b9d5ea52cfcc5673d7192";
     let dealer = "650b2a26b0a0fb3de587154a";
 
     let newData = {
       ...data,
-      oemSpecs,
+      oemSpecs: oem,
       dealer,
       image: imageUrl,
     };
 
     setData(newData);
-    postNewCar(newData);
-    
+    console.log(newData);
+    // postNewCar(newData);
+
     e.target.reset();
   };
   return (
     <div className="bg-gray-700 p-4 rounded-lg mb-32">
+      <Text
+        className="text-3xl font-serif text-left mb-5 bg-gray-800 rounded text-white 
+      p-2 cursor-pointer duration-500 ease-out hover:-translate-x-3"
+      >
+        Fill All The Details
+      </Text>
       <form className="text-left" onSubmit={handleSubmit}>
         <FormControl className="mb-4">
           <FormLabel>Upload an Image</FormLabel>

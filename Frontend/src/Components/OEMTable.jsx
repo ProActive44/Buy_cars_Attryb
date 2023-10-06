@@ -2,23 +2,34 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Button,
+  Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
-const OEMTable = ({ data }) => {
+const OEMTable = ({ data, setOEM }) => {
+  const [selected, setSelected] = useState("");
+
+  const handleOEMChange = (id) => {
+    setSelected(id);
+    setOEM(id);
+  };
   return (
-    <TableContainer >
-        <p>Choose </p>
+    <TableContainer className="bg-slate-200 p-5 text-black rounded-md text-5xl">
+      <Text
+        className="text-4xl font-serif text-left mb-5 bg-gray-800 rounded text-white 
+      p-2 cursor-pointer duration-500 ease-out hover:-translate-x-4"
+      >
+        Original Equipment Manufacturers Specifications
+      </Text>
       <Table size="sm" colorScheme="">
-        <Thead >
+        <Thead>
           <Tr className="tableHeadRow">
-            <Th fontWeight={'extrabold'}>NO.</Th>
+            <Th fontWeight={"extrabold"}>NO.</Th>
             <Th>Model</Th>
             <Th>Year</Th>
             <Th>Price</Th>
@@ -41,7 +52,14 @@ const OEMTable = ({ data }) => {
                 <Td>{ele.mileage}</Td>
                 <Td>{ele.power}</Td>
                 <Td>{ele.maxSpeed}</Td>
-                <Td><Button>Choose ODM</Button></Td>
+                <Td>
+                  <Button
+                    onClick={() => handleOEMChange(ele._id)}
+                    colorScheme={selected === ele._id ? "orange" : "yellow"}
+                  >
+                    Choose ODM
+                  </Button>
+                </Td>
               </Tr>
             );
           })}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOEM } from "../Redux/action";
 import OEMTable from "../Components/OEMTable";
@@ -7,9 +7,14 @@ import { useToast } from "@chakra-ui/react";
 import AddNewCar from "../Components/AddNewCar";
 
 const SellCars = () => {
+  const [oem, setOEM] = useState("");
   const data = useSelector((store) => store.OEM);
   // console.log(data);
   const dispatch = useDispatch();
+
+  const handleOEM = (selected) => {
+    setOEM(selected);
+  };
 
   const toast = useToast();
   const loginFirst = () => {
@@ -35,13 +40,16 @@ const SellCars = () => {
 
   return (
     <div className="text-white">
-      <h1 className="text-center my-5 font-serif font-bold text-yellow-300">Sell Your Car</h1>
-      <div>
-        {/* <OEMTable data={data} />; */}
+      <h1 className="text-center my-5 font-serif font-bold text-yellow-300">
+        Sell Your Car
+      </h1>
+      <div className="mb-10">
+        <OEMTable data={data} setOEM={handleOEM} />
       </div>
       <div>
-        <AddNewCar/>
-      </div>
+        { oem && <AddNewCar oem={oem} />} 
+        { !oem && <div className="text-3xl font-mono mb-20 text-orange-600 cursor-pointer">Please select an OEM to see the form</div>}
+        </div>
     </div>
   );
 };
