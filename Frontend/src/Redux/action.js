@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   GETALLOEM,
+  GETCURRCAR,
   GETINVENTORY,
   LOADING,
   LOGINUSER,
@@ -104,6 +105,18 @@ export const getAllInventory =
       });
   };
 
+export const getCurrentCar = (id) => (dispatch) => {
+  dispatch({ type: LOADING });
+  axios
+    .get(`${mainURL}/marketPlace/${id}`)
+    .then((res) => {
+      dispatch({ type: GETCURRCAR, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // Post new car
 export const postNewCar = async (newCar) => {
   axios
@@ -113,8 +126,7 @@ export const postNewCar = async (newCar) => {
         console.log(res.data);
         alert("New Car added");
       } else {
-        alert(
-          "Something went wrong please try again");
+        alert("Something went wrong please try again");
       }
     })
     .catch((err) => console.log(err));

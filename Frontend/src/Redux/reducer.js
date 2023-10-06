@@ -1,5 +1,6 @@
 import {
   GETALLOEM,
+  GETCURRCAR,
   GETINVENTORY,
   LOADING,
   LOGINUSER,
@@ -8,6 +9,7 @@ import {
 
 const initState = {
   Inventory: [],
+  currCar: {},
   OEM: [],
   currUser: {},
   totalPages: 0,
@@ -40,6 +42,14 @@ export const reducer = (state = initState, action) => {
         ...state,
         Inventory: payload.Inventory,
         totalPages: payload.totalCount,
+        isLoading: false,
+        isError: false,
+      };
+
+    case GETCURRCAR:
+      return {
+        ...state,
+        currCar: payload.Inventory,
         isLoading: false,
         isError: false,
       };
