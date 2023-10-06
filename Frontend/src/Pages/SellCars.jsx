@@ -40,16 +40,20 @@ const SellCars = () => {
 
   return (
     <div className="text-white">
-      <h1 className="text-center my-5 font-serif font-bold text-yellow-300">
+      <h1 className="text-center my-5 font-serif font-bold text-yellow-300 text-2xl md:text-6xl">
         Sell Your Car
       </h1>
       <div className="mb-10">
         <OEMTable data={data} setOEM={handleOEM} />
       </div>
       <div>
-        { oem && <AddNewCar oem={oem} />} 
-        { !oem && <div className="text-3xl font-mono mb-20 text-orange-600 cursor-pointer">Please select an OEM to see the form</div>}
-        </div>
+        {oem && <AddNewCar oem={oem} />}
+        {!oem && (
+          <div className="text-3xl font-mono mb-20 text-orange-600 cursor-pointer">
+            Please select an OEM to see the form
+          </div>
+        )}
+      </div>
     </div>
   );
 };

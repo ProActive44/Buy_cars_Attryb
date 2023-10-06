@@ -6,6 +6,7 @@ import {
   Input,
   Checkbox,
   Text,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
@@ -35,6 +36,7 @@ const AddNewCar = ({ oem }) => {
     title: "",
     description: "",
     price: 0,
+    color:"",
     kmsOnOdometer: 0,
     majorScratches: 0,
     originalPaint: false,
@@ -69,7 +71,7 @@ const AddNewCar = ({ oem }) => {
 
     let newData = {
       ...data,
-      oemSpecs: oem,
+      oemSpecs: oem._id,
       dealer,
       image: imageUrl,
     };
@@ -81,9 +83,9 @@ const AddNewCar = ({ oem }) => {
     e.target.reset();
   };
   return (
-    <div className="bg-gray-700 p-4 rounded-lg mb-32">
+    <div className="bg-gray-700 p-2 md:p-4 rounded-lg mb-32">
       <Text
-        className="text-3xl font-serif text-left mb-5 bg-gray-800 rounded text-white 
+        className="text-sm sm:text-base md:text-2xl lg:3xl font-serif text-left mb-5 bg-gray-800 rounded text-white 
       p-2 cursor-pointer duration-500 ease-out hover:-translate-x-3"
       >
         Fill All The Details
@@ -119,6 +121,21 @@ const AddNewCar = ({ oem }) => {
             required
             onChange={handleChange}
           />
+        </FormControl>
+        <FormControl className="mb-4">
+          <FormLabel>Color:</FormLabel>
+          <Select
+            type="text"
+            name="color"
+            required
+            onChange={handleChange}
+          >
+            {
+              oem.colors.map((color, idx)=>{
+                return <option key={idx} value={color} style={{color:'black'}}>{color}</option>
+              })
+            }
+          </Select>
         </FormControl>
 
         <FormControl className="mb-4">
@@ -189,7 +206,7 @@ const AddNewCar = ({ oem }) => {
             Original Paint
           </Checkbox>
         </FormControl>
-        <Button type="submit">Add new car</Button>
+        <Button type="submit">Add Your Car</Button>
       </form>
     </div>
   );
