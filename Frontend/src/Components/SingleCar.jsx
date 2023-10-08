@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/react";
 import React from "react";
 
 const SingleCar = ({ ele }) => {
+  console.log(ele);
+
   return (
     <>
       <div className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer">
@@ -22,7 +24,8 @@ const SingleCar = ({ ele }) => {
             <span className="text-gray-600">{ele.kmsOnOdometer} km.</span>
           </p>
           <p>
-            Color: <span className="text-gray-600">{ele.colors[0]}</span>
+            Color:{" "}
+            <span className="text-gray-600">{ele.colors[0] || ele.color}</span>
           </p>
           <p>
             OriginalPaint:{" "}
@@ -44,7 +47,9 @@ const SingleCar = ({ ele }) => {
           </p>
           <div className="text-end flex gap-2 my-2">
             <Button colorScheme="orange">BOOK TEST DRIVE</Button>
-            <Button colorScheme="orange" variant={'outline'}>SEE SELLER DETAILS</Button>
+            <Button colorScheme="orange" variant={"outline"}>
+              SEE SELLER DETAILS
+            </Button>
           </div>
         </div>
       </div>

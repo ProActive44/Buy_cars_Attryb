@@ -106,6 +106,7 @@ export const getAllInventory =
   };
 
 export const getCurrentCar = (id) => (dispatch) => {
+  
   dispatch({ type: LOADING });
   axios
     .get(`${mainURL}/marketPlace/${id}`)

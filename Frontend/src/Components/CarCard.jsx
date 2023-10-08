@@ -7,7 +7,7 @@ const CarCard = ({ ele }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/detail/${ele._id}`);
+    navigate(`/details/${ele._id}`);
   };
 
   return (
