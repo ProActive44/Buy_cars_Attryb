@@ -21,9 +21,7 @@ const CarDetails = () => {
     <div className="mt-10 mb-20 text-white">
       {/* <SingleCar ele={currCar} /> */}
       <>
-        <h1>{ele._id}</h1>
-        <img src={ele.image} className="mb-20"/>
-        {/* <div className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer">
+        <div className="flex mb-5 bg-white rounded-xl text-black flex-wrap cursor-pointer">
           <div className="w-100 md:w-1/2 p-2 md:p-5">
             <img src={ele.image} className="rounded-md" />
           </div>
@@ -44,9 +42,9 @@ const CarDetails = () => {
             </p>
             <p>
               Color:
-              <span className="text-gray-600">
+              {/* <span className="text-gray-600">
                 {ele.colors[0] || ele.color}
-              </span>
+              </span> */}
             </p>
             <p>
               OriginalPaint:{" "}
@@ -73,7 +71,7 @@ const CarDetails = () => {
               </Button>
             </div>
           </div>
-        </div> */}
+        </div>
       </>
     </div>
   );
