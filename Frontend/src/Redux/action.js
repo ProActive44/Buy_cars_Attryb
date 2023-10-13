@@ -120,6 +120,7 @@ export const getCurrentCar = (id) => (dispatch) => {
 
 // Post new car
 export const postNewCar = async (newCar) => {
+  
   axios
     .post(`${mainURL}/marketPlace`, newCar)
     .then((res) => {
@@ -136,6 +137,7 @@ export const postNewCar = async (newCar) => {
 // sellcars OEM
 
 export const getAllOEM = () => (dispatch) => {
+  dispatch({ type: LOADING });
   let token = localStorage.getItem("token");
   const headers = {
     authorization: `Bearer ${token}`,

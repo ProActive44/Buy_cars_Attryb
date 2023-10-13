@@ -5,9 +5,11 @@ import OEMTable from "../Components/OEMTable";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import AddNewCar from "../Components/AddNewCar";
+import Loading from "../Components/Loading";
 
 const SellCars = () => {
   const [oem, setOEM] = useState("");
+  const isLoading = useSelector((store) => store.isLoading);
   const data = useSelector((store) => store.OEM);
   // console.log(data);
   const dispatch = useDispatch();
@@ -39,22 +41,31 @@ const SellCars = () => {
   }, [isLogin]);
 
   return (
-    <div className="text-white">
-      <h1 className="text-center my-5 font-serif font-bold text-yellow-300 text-2xl md:text-6xl">
-        Sell Your Car
-      </h1>
-      <div className="mb-10">
-        <OEMTable data={data} setOEM={handleOEM} />
-      </div>
-      <div>
-        {oem && <AddNewCar oem={oem} />}
-        {!oem && (
-          <div className="text-3xl font-mono mb-20 text-orange-600 cursor-pointer">
-            Please select an OEM to see the form
+    <>
+      {isLoading ? (
+        <div className="mb-48 mt-10">
+          <Loading />
+          <div className="text-white">Loading please wait...</div>
+        </div>
+      ) : (
+        <div className="text-white">
+          <h1 className="text-center my-5 font-serif font-bold text-yellow-300 text-2xl md:text-6xl">
+            Sell Your Car
+          </h1>
+          <div className="mb-10">
+            <OEMTable data={data} setOEM={handleOEM} />
           </div>
-        )}
-      </div>
-    </div>
+          <div>
+            {oem && <AddNewCar oem={oem} />}
+            {!oem && (
+              <div className="text-3xl font-mono mb-20 text-orange-600 cursor-pointer">
+                Please select an OEM to see the form
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
