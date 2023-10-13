@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import SingleCar from "../Components/SingleCar";
 import CarCard from "../Components/CarCard";
+import LoadingCarCard from "../Components/LoadingCarCard";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -68,11 +69,14 @@ const Home = () => {
         {data.length > 0 ? (
           <div className="flex flex-wrap gap-2 p-2">
             {data?.map((ele, idx) => {
-              return <CarCard key={ele._id} ele={ele}/>
+              return <CarCard key={ele._id} ele={ele} />;
             })}
           </div>
         ) : isLoading ? (
-          <div className="mb-10">Loading please wait...</div>
+          <>
+            <div className="mb-10">Loading please wait...</div>
+            <LoadingCarCard />
+          </>
         ) : data.length === 0 ? (
           <div className="mb-10">No Car Found.</div>
         ) : (

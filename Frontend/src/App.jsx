@@ -20,7 +20,7 @@ function App() {
     <>
       <div className="">
         <NavBar />
-        {isLoading && <Loading />}
+        {/* {isLoading && <Loading />} */}
         <AllRoutes />
         <Footer/>
       </div>
