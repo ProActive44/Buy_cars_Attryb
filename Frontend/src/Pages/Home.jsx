@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import SingleCar from "../Components/SingleCar";
 import CarCard from "../Components/CarCard";
 import LoadingCarCard from "../Components/LoadingCarCard";
+import Loading from "../Components/Loading";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -74,13 +75,20 @@ const Home = () => {
           </div>
         ) : isLoading ? (
           <>
-            <div className="mb-10">Loading please wait...</div>
+            <div className="my-5">
+              <Loading />
+              <div className="text-white">Loading please wait...</div>
+            </div>
             <LoadingCarCard />
           </>
         ) : data.length === 0 ? (
-          <div className="mb-10">No Car Found.</div>
+          <div className="mb-48 mt-10 font-semibold text-5xl">
+            No Cars Found.
+          </div>
         ) : (
-          <></>
+          <p className="mb-48 mt-10 font-semibold text-5xl">
+            Please try to refresh the page
+          </p>
         )}
       </div>
     </div>

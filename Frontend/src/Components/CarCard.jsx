@@ -12,13 +12,13 @@ const CarCard = ({ ele }) => {
 
   return (
     <div
-      className="w-[400px] p-1 md:p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black group"
+      className="w-[400px] rounded-lg cursor-pointer hover:bg-white hover:text-black group"
       onClick={handleClick}
-    >
-      <div className="rounded-t-lg m-auto p-[10px] group-hover:p-[0]">
+    > 
+      <div className="rounded-t-lg m-auto p-[10px] group-hover:p-[0]" style={{ transition: "0.3s" }}>
         <img src={ele.image} className="rounded-t-lg m-auto" />
       </div>
-      <div className="p-2 text-left flex flex-col gap-2">
+      <div className="p-4 text-left flex flex-col gap-2">
         <p className="font-semibold text-xl">{ele.title}</p>
         <div className="flex gap-1">
           <div
