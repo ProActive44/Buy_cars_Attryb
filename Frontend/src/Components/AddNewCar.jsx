@@ -78,7 +78,7 @@ const AddNewCar = ({ oem }) => {
 
     setData(newData);
     console.log(newData);
-    // postNewCar(newData);
+    postNewCar(newData);
 
     e.target.reset();
   };
