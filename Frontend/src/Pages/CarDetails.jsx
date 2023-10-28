@@ -48,9 +48,9 @@ const CarDetails = () => {
               </p>
               <p>
                 Color:
-                {/* <span className="text-gray-600">
-                {ele.colors[0] || ele.color}
-              </span> */}
+                <span className="text-gray-600">
+                  {ele.color || ele.colors[0]}
+                </span>
               </p>
               <p>
                 OriginalPaint:{" "}
@@ -71,8 +71,14 @@ const CarDetails = () => {
                 <span className="text-gray-600"> {ele.registrationPlace}</span>
               </p>
               <div className="text-end flex gap-2 my-2 flex-wrap">
-                <Button colorScheme="orange" size={['sm', 'md']}>BOOK TEST DRIVE</Button>
-                <Button colorScheme="orange" size={['sm', 'md']} variant={"outline"}>
+                <Button colorScheme="orange" size={["sm", "md"]}>
+                  BOOK TEST DRIVE
+                </Button>
+                <Button
+                  colorScheme="orange"
+                  size={["sm", "md"]}
+                  variant={"outline"}
+                >
                   SEE SELLER DETAILS
                 </Button>
               </div>
