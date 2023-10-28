@@ -49,7 +49,7 @@ const CarDetails = () => {
               <p>
                 Color:
                 <span className="text-gray-600">
-                  {ele.color || ele.colors[0]}
+                  {ele.color || (ele.colors && ele.colors.length > 0) ? ele.colors[0] : 'red'}
                 </span>
               </p>
               <p>

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const CarCard = ({ ele }) => {
-  let color = ele.color || ele.colors[0].toLowerCase();
+  let color = ele.color || (ele.colors && ele.colors.length > 0) ? ele.colors[0].toLowerCase() : "red";
 
   const navigate = useNavigate();
 
